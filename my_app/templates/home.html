@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Elimina los atributos de integridad y crossorigin -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4">Bienvenido a Home</h1>
+            <p class="lead">Aquí puedes ver todos los proyectos disponibles y crear nuevos proyectos o tareas.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mb-4">Proyectos</h2>
+                <ul class="list-group">
+                    {% for project in projects %}
+                        <a href="{% url 'home:project_tasks' project_id=project.name %}">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ project.name }}
+                                <span class="badge bg-primary rounded-pill">Proyecto</span>
+                            </li>
+                        </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-5 text-center">
+            <a href="{% url 'home:forms' %}" class="btn btn-success btn-lg">Ir a Crear Proyecto</a>
+            <a href="{% url 'home:tasks' %}" class="btn btn-info btn-lg">Ir a Crear Tarea para Proyecto</a>
+        </div>
+    </div>
+
+    <!-- Elimina también los atributos de integridad y crossorigin aquí -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
